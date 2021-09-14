@@ -63,18 +63,11 @@ uploadArchives {
         configuration = configurations.deployLibrary
         repository(url: 'git:releases://git@bitbucket.org:' + COMPANY + '/' + REPOSITORY_NAME + '.git')
         configuration = configurations.deployerJar;
-        pom.groupId =ARTIFACT_PACKAGE
-        pom.artifactId =ARTIFACT_NAME
-        pom.version =ARTIFACT_VERSION
-	pom.packaging= ARTIFACT_PACKAGING
-        pom.withXml {
-            def dependenciesNode = asNode().appendNode('dependencies')
-            configurations.implementation.allDependencies.each { dependency ->
-                def dependencyNode = dependenciesNode.appendNode('dependency')
-                dependencyNode.appendNode('groupId', dependency.group)
-                dependencyNode.appendNode('artifactId', dependency.name)
-                dependencyNode.appendNode('version', dependency.version)
-            }
+      pom.project {
+            groupId = ARTIFACT_PACKAGE
+            version = ARTIFACT_VERSION
+            artifactId = ARTIFACT_NAME
+            packaging ARTIFACT_PACKAGING
         }
     }
 }
