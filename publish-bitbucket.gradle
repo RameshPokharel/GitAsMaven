@@ -63,9 +63,9 @@ uploadArchives {
         configuration = configurations.deployLibrary
         repository(url: 'git:releases://git@bitbucket.org:' + COMPANY + '/' + REPOSITORY_NAME + '.git')
         configuration = configurations.deployerJar;
-        pom.groupId = "com.singular.auth"
-        pom.artifactId =  "base"
-        pom.version = "1.0.0"
+        pom.groupId =ARTIFACT_PACKAGE
+        pom.artifactId =ARTIFACT_NAME
+        pom.version =ARTIFACT_VERSION
         pom.withXml {
             def dependenciesNode = asNode().appendNode('dependencies')
             configurations.implementation.allDependencies.each { dependency ->
