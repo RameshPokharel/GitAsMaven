@@ -62,13 +62,11 @@ uploadArchives {
     repositories.mavenDeployer {
         configuration = configurations.deployLibrary
         repository(url: 'git:releases://git@bitbucket.org:' + COMPANY + '/' + REPOSITORY_NAME + '.git')
-        pom.project {
-            groupId = ARTIFACT_PACKAGE
-            version = ARTIFACT_VERSION
-            artifactId = ARTIFACT_NAME
-            packaging ARTIFACT_PACKAGING
-        }
-	pom.withXml {
+        configuration = configurations.deployerJar;
+        pom.groupId = "com.singular.auth"
+        pom.artifactId =  "base"
+        pom.version = "1.0.0"
+        pom.withXml {
             def dependenciesNode = asNode().appendNode('dependencies')
             configurations.implementation.allDependencies.each { dependency ->
                 def dependencyNode = dependenciesNode.appendNode('dependency')
