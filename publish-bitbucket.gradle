@@ -66,6 +66,7 @@ uploadArchives {
         pom.groupId =ARTIFACT_PACKAGE
         pom.artifactId =ARTIFACT_NAME
         pom.version =ARTIFACT_VERSION
+	pom.packaging= ARTIFACT_PACKAGING
         pom.withXml {
             def dependenciesNode = asNode().appendNode('dependencies')
             configurations.implementation.allDependencies.each { dependency ->
